@@ -8,12 +8,12 @@ const port = process.env.PORT;
 
 app.get('/', (req, res) => {
 
-res.send('Hello DW3!')
+    res.send('Hello DW3!')
 })
 
 app.listen(port, () => {
 
-console.log('Executando a aplicação' , process.env.APP_NAME);
+    console.log('Executando a aplicação', process.env.APP_NAME);
 
-console.log('Example app listening on port', port);
- })
+    console.log('Example app listening on port', port);
+})
