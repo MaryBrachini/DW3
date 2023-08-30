@@ -1,4 +1,4 @@
-### teste de buscar aluno por ID
+### teste de buscar Clientes por ID
 POST http://localhost:40000/Login HTTP/1.1
 content-type: application/json
 //Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzQ3ODI5NzksInVzZXJuYW1lIjoicXdlIn0.SlYYCm8J6wlpb3i1jJcSvhSz6VjwKvzPOxza8P6-hzo
@@ -9,8 +9,8 @@ content-type: application/json
 }
 
 
-### teste de buscar todos os alunos
-GET http://localhost:40000/getAllAlunos HTTP/1.1
+### teste de buscar todos os Clientes
+GET http://localhost:40000/getAllClientes HTTP/1.1
 content-type: application/json
 //Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzQ3ODI5NzksInVzZXJuYW1lIjoicXdlIn0.SlYYCm8J6wlpb3i1jJcSvhSz6VjwKvzPOxza8P6-hzo
 
@@ -18,22 +18,22 @@ content-type: application/json
     
 }
 
-### teste de buscar aluno por ID
-POST http://localhost:40000/getAlunoByID HTTP/1.1
+### teste de buscar Clientes por ID
+POST http://localhost:40000/getClientesByID HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQxMTU5NCwiZXhwIjoxNjkxNDExODk0fQ.1Ig9H4D6QMW0TSkwJIyv7YZjBO35u5WkOpqhoSBRA1U
 
 {    
-    "alunoid": 1
+    "clientesid": 1
 }
 
-### teste de inserção de aluno
-POST http://localhost:40000/insertAlunos HTTP/1.1
+### teste de inserção de Clientes
+POST http://localhost:40000/insertClientes HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "alunoid": 0,
+    "clientesid": 0,
     "prontuario": "pront5",
     "nome": "Carlos das Matias",
     "endereco": " Rua das couves",
@@ -43,13 +43,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3Z
     "deleted": false
 }
 
-### teste de atualização de aluno
-POST http://localhost:40000/updateAlunos HTTP/1.1
+### teste de atualização de clientes
+POST http://localhost:40000/updateClientes HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "alunoid": 52,
+    "clientesid": 52,
     "prontuario": "pront109",
     "nome": "xJosé das Neves",
     "endereco": "x Rua das couves",
@@ -59,11 +59,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3Z
     "deleted": false
 }
 
-### teste de atualização de aluno
-POST http://localhost:40000/DeleteAlunos HTTP/1.1
+### teste de atualização de clientes
+POST http://localhost:40000/DeleteClientes HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQ5MDg3NCwiZXhwIjoxNjkxNDkxNDc0fQ.1ABhMgWYm8gGKy7q90GOPQpNoY5M1LLzpCltKxFjcEo
 
 {    
-    "alunoid": 55  
+    "clientesid": 55  
 }

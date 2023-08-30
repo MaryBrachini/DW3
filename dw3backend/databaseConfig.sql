@@ -51,7 +51,7 @@ ON CONFLICT DO NOTHING;
 -- Usado para exercícios
 
 create table IF NOT EXISTS clientes (
-    clienteid bigserial constraint pk_clientes PRIMARY KEY,
+    clientesid bigserial constraint pk_clientes PRIMARY KEY,
     codigo varchar(50) UNIQUE,
     nome VARCHAR(60),
     endereco VARCHAR(50),
@@ -65,15 +65,15 @@ insert into clientes values
     ON CONFLICT DO NOTHING;
 
 create table IF NOT EXISTS pedidos (
-    pedidoid bigserial constraint pk_pedidos PRIMARY KEY,
+    pedidosid bigserial constraint pk_pedidos PRIMARY KEY,
     numero bigint UNIQUE,
     data DATE,
     valortotal numeric(9,2),
-    clienteid bigint constraint fk_pedido_cliente REFERENCES clientes,    
+    clientesid bigint constraint fk_pedido_cliente REFERENCES clientes,    
     deleted boolean DEFAULT false
 );
 
 insert into pedidos values 
- (default, 234, '2020-01-31', 6891.60, (SELECT clienteid from CLIENTES where codigo = 'CLI01'))
+ (default, 234, '2020-01-31', 6891.60, (SELECT clientesid from CLIENTES where codigo = 'CLI01'))
  ON CONFLICT DO NOTHING;
 
