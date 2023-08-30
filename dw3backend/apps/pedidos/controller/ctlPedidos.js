@@ -8,8 +8,8 @@ const getAllPedidos = (req, res) =>
 
 const getPedidosByID = (req, res) =>
   (async () => {
-    const pedidosID = parseInt(req.body.pedidosid);
-    let registro = await mdlPedidos.getPedidosByID(pedidosID);
+    const pedidoID = parseInt(req.body.pedidoid);
+    let registro = await mdlPedidos.getPedidosByID(pedidoID);
 
     res.json({ status: "ok", "registro": registro });
   })();
@@ -25,7 +25,7 @@ const insertPedidos = (request, res) =>
 const updatePedidos = (request, res) =>
   (async () => {
     const pedidosREG = request.body;
-    let  { msg, linhasAfetadas } = await mdlPedidos.UpdatePedidos(pedidosREG);
+    let  { msg, linhasAfetadas } = await mdlPedidos.updatePedidos(pedidosREG);
     res.json({ "status": msg, "linhasAfetadas": linhasAfetadas });
   })();
 

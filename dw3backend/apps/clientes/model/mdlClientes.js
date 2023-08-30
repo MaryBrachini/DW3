@@ -3,18 +3,16 @@ const db = require("../../../database/databaseconfig");
 const getAllClientes = async () => {
   return (
     await db.query(
-      "SELECT *, (SELECT descricao from CURSOS where cursoid = clientes.cursoid)" +
-        "FROM clientes where deleted = false ORDER BY nome ASC"
+      "SELECT * " + "FROM clientes where deleted = false ORDER BY nome ASC"
     )
   ).rows;
 };
 
-const getClientesByID = async (clientesIDPar) => {
+const getClientesByID = async (clienteIDPar) => {
   return (
     await db.query(
-      "SELECT *, (SELECT descricao from CURSOS where cursoid = clientes.cursoid)" +
-        "FROM clientes WHERE clientesid = $1 and deleted = false ORDER BY nome ASC",
-      [clientesIDPar]
+      "SELECT * " + "FROM clientes WHERE clienteid = $1 and deleted = false ORDER BY nome ASC",
+      [clienteIDPar]
     )
   ).rows;
 };
@@ -26,15 +24,14 @@ const insertClientes = async (clientesREGPar) => {
   try {
     linhasAfetadas = (
       await db.query(
-        "INSERT INTO clientes " + "values(default, $1, $2, $3, $4, $5, $6, $7)",
+        "INSERT INTO clientes " + "values(default, $1, $2, $3, $4, $5, $6)",
         [
-            clientesREGPar.prontuario,
-            clientesREGPar.nome,
-            clientesREGPar.endereco,
-            clientesREGPar.rendafamiliar,
-            clientesREGPar.datanascimento,
-            clientesREGPar.cursoid,
-            clientesREGPar.deleted,
+          clientesREGPar.codigo,
+          clientesREGPar.nome,
+          clientesREGPar.endereco,
+          clientesREGPar.datanascimento,
+          clientesREGPar.ativo,
+          clientesREGPar.deleted,
         ]
       )
     ).rowCount;
@@ -53,23 +50,21 @@ const UpdateClientes = async (clientesREGPar) => {
     linhasAfetadas = (
       await db.query(
         "UPDATE clientes SET " +
-          "prontuario = $2, " +
-          "nome = $3, " +
-          "endereco = $4, " +
-          "rendafamiliar = $5, " +
-          "datanascimento = $6, " +
-          "cursoid = $7, " +
-          "deleted = $8 " +
-          "WHERE clientesid = $1",
+        "codigo = $2, " +
+        "nome = $3, " +
+        "endereco = $4, " +
+        "datanascimento = $5, " +
+        "cursoid = $6, " +
+        "deleted = $7 " +
+        "WHERE clienteid = $1",
         [
-            clientesREGPar.clientesid,
-            clientesREGPar.prontuario,
-            clientesREGPar.nome,
-            clientesREGPar.endereco,
-            clientesREGPar.rendafamiliar,
-            clientesREGPar.datanascimento,
-            clientesREGPar.cursoid,
-            clientesREGPar.deleted,
+          clientesREGPar.codigo,
+          clientesREGPar.nome,
+          clientesREGPar.endereco,
+          clientesREGPar.rendafamiliar,
+          clientesREGPar.datanascimento,
+          clientesREGPar.cursoid,
+          clientesREGPar.deleted,
         ]
       )
     ).rowCount;
@@ -84,20 +79,20 @@ const UpdateClientes = async (clientesREGPar) => {
 const DeleteClientes = async (clientesREGPar) => {
   let linhasAfetadas;
   let msg = "ok";
-    
+
   try {
     linhasAfetadas = (
-    await db.query(
-      "UPDATE clientes SET " + "deleted = true " + "WHERE clientesid = $1",
-      [clientesREGPar.clientesid]
-    )
-  ).rowCount;
-} catch (error) {
-  msg = "[mdlClientes|DeleteClientes] " + error.detail;
-  linhasAfetadas = -1;
-}
+      await db.query(
+        "UPDATE clientes SET " + "deleted = true " + "WHERE clienteid = $1",
+        [clientesREGPar.clienteid]
+      )
+    ).rowCount;
+  } catch (error) {
+    msg = "[mdlClientes|DeleteClientes] " + error.detail;
+    linhasAfetadas = -1;
+  }
 
-return { msg, linhasAfetadas };
+  return { msg, linhasAfetadas };
 };
 
 module.exports = {

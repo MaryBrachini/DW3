@@ -8,7 +8,7 @@ const getAllClientes = (req, res) =>
 
 const getClientesByID = (req, res) =>
   (async () => {
-    const clientesID = parseInt(req.body.clienteid);
+    const clienteID = parseInt(req.body.clienteid);
     let registro = await mdlClientes.getClientesByID(clienteID);
 
     res.json({ status: "ok", "registro": registro });

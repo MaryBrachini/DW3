@@ -3,18 +3,18 @@ const db = require("../../../database/databaseconfig");
 const getAllPedidos = async () => {
   return (
     await db.query(
-      "SELECT *, (SELECT descricao from CURSOS where cursoid = pedidos.cursoid)" +
-        "FROM pedidos where deleted = false ORDER BY nome ASC"
+      "SELECT *, (SELECT data from pedidos where pedidoid = pedidos.pedidoid)" +
+      "FROM clientes where deleted = false ORDER BY nome ASC"
     )
   ).rows;
 };
 
-const getPedidosByID = async (pedidosIDPar) => {
+const getPedidosByID = async (pedidoIDPar) => {
   return (
     await db.query(
-      "SELECT *, (SELECT descricao from CURSOS where cursoid = pedidos.cursoid)" +
-        "FROM pedidos WHERE pedidosid = $1 and deleted = false ORDER BY nome ASC",
-      [pedidosIDPar]
+      "SELECT *, (SELECT data from pedidos where pedidoid = pedidos.pedidoid)" +
+      "FROM clientes WHERE clienteid = $1 and deleted = false ORDER BY nome ASC",
+      [pedidoIDPar]
     )
   ).rows;
 };
@@ -26,14 +26,12 @@ const insertPedidos = async (pedidosREGPar) => {
   try {
     linhasAfetadas = (
       await db.query(
-        "INSERT INTO pedidos " + "values(default, $1, $2, $3, $4, $5, $6, $7)",
+        "INSERT INTO pedidos " + "values(default, $1, $2, $3, $4, $5 )",
         [
-            pedidosREGPar.prontuario,
-            pedidosREGPar.nome,
-            pedidosREGPar.endereco,
-            pedidosREGPar.rendafamiliar,
-            pedidosREGPar.datanascimento,
-            pedidosREGPar.cursoid,
+            pedidosREGPar.numero,
+            pedidosREGPar.data,
+            pedidosREGPar.valortotal,
+            pedidosREGPar.clienteid,
             pedidosREGPar.deleted,
         ]
       )
@@ -46,29 +44,26 @@ const insertPedidos = async (pedidosREGPar) => {
   return { msg, linhasAfetadas };
 };
 
-const UpdatePedidos = async (pedidosREGPar) => {
+const updatePedidos = async (pedidosREGPar) => {
   let linhasAfetadas;
   let msg = "ok";
   try {
     linhasAfetadas = (
       await db.query(
         "UPDATE pedidos SET " +
-          "prontuario = $2, " +
-          "nome = $3, " +
-          "endereco = $4, " +
-          "rendafamiliar = $5, " +
-          "datanascimento = $6, " +
-          "cursoid = $7, " +
-          "deleted = $8 " +
-          "WHERE pedidosid = $1",
+          "numero = $2, " +
+          "data = $3, " +
+          "valortotal = $4, " +
+          "clienteid = $5, " +
+          "deleted = $6 " +
+          "WHERE pedidoid = $1",
         [
-            pedidosREGPar.pedidosid,
-            pedidosREGPar.prontuario,
-            pedidosREGPar.nome,
-            pedidosREGPar.endereco,
-            pedidosREGPar.rendafamiliar,
+           
+            pedidosREGPar.numero,
+            pedidosREGPar.data,
+            pedidosREGPar.valortotal,
             pedidosREGPar.datanascimento,
-            pedidosREGPar.cursoid,
+            pedidosREGPar.clienteid,
             pedidosREGPar.deleted,
         ]
       )
@@ -88,8 +83,8 @@ const DeletePedidos = async (pedidosREGPar) => {
   try {
     linhasAfetadas = (
     await db.query(
-      "UPDATE pedidos SET " + "deleted = true " + "WHERE pedidosid = $1",
-      [pedidosREGPar.pedidosid]
+      "UPDATE pedidos SET " + "deleted = true " + "WHERE pedidoid = $1",
+      [pedidosREGPar.pedidoid]
     )
   ).rowCount;
 } catch (error) {
@@ -104,6 +99,6 @@ module.exports = {
   getAllPedidos,
   getPedidosByID,
   insertPedidos,
-  UpdatePedidos,
+  updatePedidos,
   DeletePedidos,
 };
