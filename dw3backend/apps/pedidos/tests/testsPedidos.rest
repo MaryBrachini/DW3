@@ -33,14 +33,11 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "pedidoid": 0,
-    "prontuario": "pront5",
-    "nome": "Carlos das Matias",
-    "endereco": " Rua das couves",
-    "rendafamiliar": 10000,
-    "datanascimento": "1999-12-12",
-    "cursoid": 2,
-    "deleted": false
+    "numero":"1",
+    "data":"1999-12-12",
+    "valortotal":"10000",
+    "clienteid":"2",
+    "deleted":false      
 }
 
 ### teste de atualização de Pedidos
@@ -49,14 +46,12 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "pedidoid": 52,
-    "prontuario": "pront109",
-    "nome": "xJosé das Neves",
-    "endereco": "x Rua das couves",
-    "rendafamiliar": 0,
-    "datanascimento": "1999-12-12",
-    "cursoid": 2,
-    "deleted": false
+   
+    "numero":8,
+    "data":"1999-12-07",
+    "valortotal":10000,
+    "clienteid":2,
+    "deleted":false
 }
 
 ### teste de atualização de Pedidos

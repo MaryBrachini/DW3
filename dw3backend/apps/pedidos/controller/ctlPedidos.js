@@ -2,16 +2,16 @@ const mdlPedidos = require("../model/mdlPedidos");
 
 const getAllPedidos = (req, res) =>
   (async () => {
-    let registro = await mdlPedidos.getAllPedidos();
-    res.json({ status: "ok", "registro": registro });
+    let pedidosREG = await mdlPedidos.getAllPedidos();
+    res.json({ status: "ok", "registro pedidos": pedidosREG });
   })();
 
 const getPedidosByID = (req, res) =>
   (async () => {
     const pedidoID = parseInt(req.body.pedidoid);
-    let registro = await mdlPedidos.getPedidosByID(pedidoID);
+    let pedidosREG = await mdlPedidos.getPedidosByID(pedidoID);
 
-    res.json({ status: "ok", "registro": registro });
+    res.json({ status: "ok", "registro pedidos": pedidosREG });
   })();
 
 const insertPedidos = (request, res) =>
