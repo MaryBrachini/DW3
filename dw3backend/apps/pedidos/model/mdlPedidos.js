@@ -26,7 +26,7 @@ const insertPedidos = async (pedidosREGPar) => {
   try {
     linhasAfetadas = (
       await db.query(
-        "INSERT INTO pedidos " + "values(default, $1, $2, $3, $4, $5 )",
+        "INSERT INTO pedidos " + "values(default, $1, $2, $3, $4, $5)",
         [
           pedidosREGPar.numero,
           pedidosREGPar.data,

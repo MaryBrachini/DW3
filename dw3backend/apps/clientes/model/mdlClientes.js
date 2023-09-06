@@ -24,14 +24,13 @@ const insertClientes = async (clientesREGPar) => {
   try {
     linhasAfetadas = (
       await db.query(
-        "INSERT INTO clientes " + "values(default, $1, $2, $3, $4, $5, $6)",
+        "INSERT INTO clientes " + "values(default, $1, $2, $3, $4, $5)",
         [
           clientesREGPar.codigo,
           clientesREGPar.nome,
           clientesREGPar.endereco,
-          clientesREGPar.datanascimento,
           clientesREGPar.ativo,
-          clientesREGPar.deleted,
+          clientesREGPar.deleted
         ]
       )
     ).rowCount;
@@ -53,18 +52,16 @@ const UpdateClientes = async (clientesREGPar) => {
         "codigo = $2, " +
         "nome = $3, " +
         "endereco = $4, " +
-        "datanascimento = $5, " +
-        "cursoid = $6, " +
-        "deleted = $7 " +
+        "ativo = $5, " +
+        "deleted = $6 " +
         "WHERE clienteid = $1",
         [
+          clientesREGPar.clienteid,
           clientesREGPar.codigo,
           clientesREGPar.nome,
           clientesREGPar.endereco,
-          clientesREGPar.rendafamiliar,
-          clientesREGPar.datanascimento,
-          clientesREGPar.cursoid,
-          clientesREGPar.deleted,
+          clientesREGPar.ativo,
+          clientesREGPar.deleted
         ]
       )
     ).rowCount;

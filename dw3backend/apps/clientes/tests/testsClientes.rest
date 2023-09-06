@@ -33,13 +33,11 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "clienteid": 0,
-    "prontuario": "pront5",
+    "clienteid": 9,
+    "codigo": "15",
     "nome": "Carlos das Matias",
-    "endereco": " Rua das couves",
-    "rendafamiliar": 10000,
-    "datanascimento": "1999-12-12",
-    "cursoid": 2,
+    "endereco": "Rua das couves",
+    "ativo": true,
     "deleted": false
 }
 
@@ -49,13 +47,11 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTY5MTQzNTg3MSwiZXhwIjoxNjkxNDM2NDcxfQ.hAh0VyRfEXvYmhunlJALD-qda8pYr2zzAHobn1yua20
 
 {    
-    "clienteid": 52,
-    "prontuario": "pront109",
-    "nome": "xJosé das Neves",
-    "endereco": "x Rua das couves",
-    "rendafamiliar": 0,
-    "datanascimento": "1999-12-12",
-    "cursoid": 2,
+    "clienteid": 3,
+    "codigo": "9",
+    "nome": "José das Neves",
+    "endereco": "X Rua das couves",
+    "ativo": true,
     "deleted": false
 }
 
