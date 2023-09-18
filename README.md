@@ -1,4 +1,4 @@
-# DW3
+# Comandos utilizados nas aulas de Web 3 no gitHub
 #
 ```
 git add .
