@@ -1,4 +1,4 @@
-# **Comandos utilizados nas aulas de Web 3 no gitHub**
+# **Comandos utilizados nas aulas de Web3 no gitHub**
 
 ### Comandos para enviar os arquivos para o github
 ```
