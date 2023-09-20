@@ -1,0 +1,174 @@
+@html.extend('layout', function(model){
+
+@html.block('content', function(model){
+
+
+<main>
+
+    <div class="container-fluid px-4">
+        <h1 class="mt-2">@model.title</h1>
+        <ol class="breadcrumb mb-2">
+            <li class="breadcrumb-item active">@model.title</li>
+        </ol>
+        <div class="row">
+            <div class="col-xl-12">
+
+                <div class="card-header">
+
+                </div>
+
+                <div class="card-body">
+                    <div class="col-xl-5">
+                        <form  id="form">
+                            <div class="mb-1" style="display: none">
+                                <input type="text" name="id" value="@model.data.alunoid" class="form-control" id="id">
+                            </div>
+                            <div class="mb-1">
+                                <label for="prontuario" class="form-label">Prontuário</label>
+                                <input type="text" name="prontuario" value="@model.data.prontuario" class="form-control"
+                                    id="prontuario" @(model.oper=='v' ? 'disabled' : '' )>
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" name="nome" value="@model.data.nome" class="form-control" id="nome"
+                                    @(model.oper=='v' ? 'disabled' : '' )>
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="endereco" class="form-label">Endereco</label>
+                                <input type="text" name="endereco" value="@model.data.endereco" class="form-control"
+                                    id="endereco" @(model.oper=='v' ? 'disabled' : '' )>
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="rendafamiliar" class="form-label">Renda familiar</label>
+                                <input type="text" name="rendafamiliar" value="@model.data.rendafamiliar"
+                                    class="form-control" id="rendafamiliar" data-thousands="." data-decimal=","
+                                    @(model.oper=='v' ? 'disabled' : '' )>
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="" class="form-label">Curso</label>
+                                <select class="form-select" aria-label="Default select example" id="cursoid"
+                                    @(model.oper=='v' ? 'disabled' : '' ) name="cursoid">
+                                    @model.curso.forEach(function(item){
+                                    @if(model.data.cursoid === item.cursoid) {
+                                    <option value="@item.cursoid" selected>@item.descricao</option>
+                                    } else {
+                                    <option value="@item.cursoid">@item.descricao</option>
+                                    }
+                                    });
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="datanascimento" class="form-label">Data nascimento <span
+                                        style="color: red;">*</span></label>
+                                <input type="date" name="datanascimento" value="@model.data.datanascimento"
+                                    class="form-control" id="datanascimento" @(model.oper=='v' ? 'disabled' : '' )>
+                            </div>
+
+                            @if (model.oper=="c") {
+                            <button type="submit" class="btn btn-success me-2" onclick=""
+                                formmethod="POST">Salvar</button>
+                            }
+
+                        </form>
+                        <div>
+                            @if (model.oper=="vu") {
+                            <button type="button" class="btn btn-warning me-2 mb-3" onclick="alteraRegistro()">Salvar
+                                Alteração</button>
+                            }
+
+                            @if (model.oper=="v") {
+                            <button type="button" class="btn btn-warning me-2 mb-3"
+                                onclick="window.open('/alunos/viewAlunos/' + $('#id').val() + '/vu', '_self')">Alterar</button>
+                            }
+
+                            @if (model.oper=="v") {
+                            <button type="" class="btn btn-danger mb-3" onclick="deleteAlunos()">Remover</button>
+                            }
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = '/alunos'">Fechar
+                            sem salvar</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+})
+
+})
+
+<script>
+
+    $(function () {
+        $('#rendafamiliar').maskMoney();
+    })
+
+    $('#form').on('submit', function () {
+        if ($('#datanascimento').val() == "") {
+            // $('#errormessage').html("Please provide at least an email ");
+            alert("Informe a data de nascimento");
+            return false;
+        } else {
+            $('#rendafamiliar').val($('#rendafamiliar').maskMoney('unmasked')[0]);
+            return true;
+        }
+    });
+
+    async function alteraRegistro() {
+        // event.preventDefault();        
+        resp = await axios.post("/alunos/viewAlunos", {
+            id: $("#id").val(),
+            prontuario: $("#prontuario").val(),
+            nome: $("#nome").val(),
+            endereco: $("#endereco").val(),
+            rendafamiliar: $('#rendafamiliar').maskMoney('unmasked')[0], //Retira a formatação de money
+            datanascimento: $("#datanascimento").val(),
+            cursoid: $("#cursoid").val(),
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        //console.log("[view_cadAlunos.vash|alteraRegistro] valor resp:", resp.data.status);
+        if (resp.data.status == "ok") {
+            alert("Aluno alterado com sucesso!");
+        } else {
+            alert("Houve erro ao alterar os dados dos alunos!");
+        }
+    }
+
+    async function deleteAlunos(prontuarioPar) {
+        resp = await axios.post("/alunos/DeleteAlunos", {
+            id: $("#id").val(),
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (resp.data.status == "ok") {
+            alert("Aluno removido com sucesso!");
+            window.open("/alunos", "_self");
+        } else {
+            alert("Houve erro ao remover os dados dos alunos!");
+        }
+    }
+
+    async function testeFormData() {
+        const form = document.getElementById("form");
+        const formData = new FormData(form);          
+
+        // for (const [key, value] of formData) {
+        //     console.log("Valores:" + `${key}: ${value}`);
+        // }
+
+        console.log("Prontuario: ", formData.get("prontuario")); 
+    }
+</script>

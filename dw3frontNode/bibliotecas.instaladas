@@ -1,0 +1,22 @@
+1) Criar o diretório DW3. Entre neste diretório.
+
+1.1) Instalar o express-generator
+sudo npm i -g express-generator
+
+2) criar a aplicação no diretório dw3frontNode
+express -e --view=vash dw3frontNode
+
+2.1) Entrar no diretório criado.
+
+3) Instalar as dependencias
+npm i
+
+4) Executar a aplicação e testar
+DEBUG=dw3frontnode:* npm start
+
+5) Instalar as bibliotecas 
+npm i express-session axios dotenv body-parser moment http-errors
+
+
+
+

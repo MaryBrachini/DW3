@@ -1,0 +1,20 @@
+
+> dw3frontnode@0.0.0 start
+> node ./bin/www
+
+[ctlLogin.js] Valor ServidorDW: http://localhost:40000
+[0mPOST /Login [32m200 [0m446.786 ms - 663[0m
+[0mGET /stylesheets/style.css [36m304 [0m31.594 ms - -[0m
+[0mGET /css/5.3.0/bootstrap.min.css [36m304 [0m31.133 ms - -[0m
+[index.js] Valor da Session: Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  isLogged: true
+}
+[0mGET / [32m200 [0m84.040 ms - 679[0m
+[0mGET /stylesheets/style.css [36m304 [0m19.073 ms - -[0m
+[0mGET /css/5.3.0/bootstrap.min.css [36m304 [0m5.078 ms - -[0m
+[0mGET /Login [32m200 [0m83.420 ms - 1494[0m
+[0mGET /stylesheets/style.css [36m304 [0m5.115 ms - -[0m
+[0mGET /css/5.3.0/bootstrap.min.css [36m304 [0m10.589 ms - -[0m
+[0mGET /js/5.3.0/bootstrap.min.js [36m304 [0m5.880 ms - -[0m
+[ctlLogin.js] Valor ServidorDW: http://localhost:40000
