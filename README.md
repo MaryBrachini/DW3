@@ -32,3 +32,10 @@ git config --global --unset user.email
 ```
 git clone "repositorio.git"
 ```
+### Para pegar o repositorio atualizado 
+```
+git init
+```
+```
+git pull "repositorio.git"
+```
