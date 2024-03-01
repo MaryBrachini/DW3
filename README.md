@@ -39,3 +39,13 @@ git init
 ```
 git pull "repositorio.git"
 ```
+
+
+fazer aquela orra la
+
+```
+git remote add origin
+```
+```
+git branch -M main
+```
